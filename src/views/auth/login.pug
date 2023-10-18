@@ -1,0 +1,44 @@
+extends ../layout/index
+
+block content
+  body(style="background-color: #026873;")
+    div.py-10(style="background-color: #026873;")
+      h1.text-center-4xl.my-10.font-extrabold.text-center.text-5xl(style="color: #BF7F30;") Real
+        span.font-normal(style="color: black;") Estate
+      h2.text-center.text-3.l.font-extrabold.text-4xl= page
+
+      .mt-8.mx-auto.max-w-xl(style="background-color: #44803F;")
+        .bg-white.py-8.px-4.shadow
+          form.space-y-5(action="")
+            - const inputStyle = "w-full px-3 py-2 border-0 border-b-2 border-solid border-gray-400"
+            script.
+              document.addEventListener("DOMContentLoaded", function() {
+                const inputFields = document.querySelectorAll("input[type='text'], input[type='email'], input[type='password']");
+                inputFields.forEach(function(input) {
+                  input.style.borderBottom = "2px solid #808080"; // Establece el color del borde inferior a gris claro al iniciar la página.
+
+                  input.addEventListener("focus", function() {
+                    this.style.borderBottom = "2px solid #EFDB00"; // Cambia el color del borde inferior a amarillo al hacer clic.
+                  });
+
+                  input.addEventListener("blur", function() {
+                    if (this.value === "") {
+                      this.style.borderBottom = "2px solid #FF0000"; // Cambia el color del borde inferior a rojo si el campo está vacío.
+                    } else {
+                      this.style.borderBottom = "2px solid #6AEF7E"; // Cambia el color del borde inferior a verde si el campo tiene contenido.
+                    }
+                  });
+                });
+              });
+
+            div
+              label.block.text-sm.uppercase.text-gray-700.mb-3.font-bold(for="email") Email
+              input#email(name="email", type="email", class=inputStyle, style="color: black; outline: none;", placeholder="user@domain.com")
+            div
+              label.block.text-sm.uppercase.text-gray-700.mb-3.font-bold(for="password") Password
+              input#password(name="password", type="password", class=inputStyle, style="color: black; outline: none;", placeholder="Enter your password")
+            div.flex.items-center.justify-between
+              a.text-gray-500.text-xs(href="/login/register" class="hover:underline") Don't have an account? Create one
+              a.text-gray-500.text-xs(href="/login/recovery" class="hover:underline") Forgot your password?
+
+            input(type="submit", class="w-full bg-FFEC5C hover:bg-FF5A33 text-white font-bold py-3 cursor-pointer", style="background-color: #BF8C2C;", value="Login")

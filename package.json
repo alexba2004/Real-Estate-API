@@ -1,0 +1,40 @@
+{
+    "name": "mx.edu.utxj.ti.dsm.awos.bienesraices-220103",
+    "version": "1.0.0",
+    "description": "Este proyecto será desarrollado con Node, Express, Sequelize, PUG, Tailwind, Leafleft, consistirá en realizar un sistema web que permita la publicación de propiedad para su compra venta.",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "start": "node src/index.js",
+        "start-permanente": "nodemon src/index.js",
+        "dev": "nodemon src/server.js",
+        "server-common": "nodemon src/server_CommonJS.js",
+        "css-compiler": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+        "css-compiler-permanente": "nodemon npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+        "css": "postcss src/public/css/tailwind.css -o src/public/css/app.css --watch"
+    },
+    "keywords": [
+        "AWOS",
+        "APPI",
+        "REST",
+        "MYSQL",
+        "BIENES",
+        "RAICES",
+        "TAILWIND"
+    ],
+    "author": "Jose Alejandro Briones Arroyo - 220103",
+    "license": "ISC",
+    "devDependencies": {
+        "autoprefixer": "^10.4.16",
+        "express": "^4.18.2",
+        "nodemon": "^3.0.1",
+        "postcss": "^8.4.31",
+        "postcss-cli": "^10.1.0",
+        "tailwindcss": "^3.3.3"
+    },
+    "dependencies": {
+        "mysql2": "^3.6.2",
+        "pug": "^3.0.2",
+        "sequelize": "^6.33.0"
+    }
+}
