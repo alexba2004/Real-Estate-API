@@ -7,9 +7,14 @@ block content
         span.font-normal(style="color: black;") Estate
       h2.text-center.text-3.l.font-extrabold.text-4xl= page
 
+      if errors
+        div(class="max-w-md mx-auto md-10")
+          each error in errors
+            P.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg 
+
       .mt-8.mx-auto.max-w-xl
         .bg-white.py-8.px-4.shadow
-          form.space-y-5(action="register", method="POST")
+          form.space-y-5(action="register", method="POST", noValidate)
             - const inputStyle = "w-full px-3 py-2 border-0 border-b-2 border-solid border-gray-400" 
             script.
               document.addEventListener("DOMContentLoaded", function() {
