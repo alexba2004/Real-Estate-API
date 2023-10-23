@@ -38,7 +38,7 @@ block content
 
             div
               label.block.text-sm.uppercase.text-gray-700.mb-3.font-bold(for="name") Name
-              input#name(name="name" type="text", class=inputStyle, style="color: black; outline: none;", placeholder="Full Name")
+              input#name(name="name" type="text", class=inputStyle, style="color: black; outline: none;", placeholder="Full Name", value= user && user.name ? user.name : '')
             div
               label.block.text-sm.uppercase.text-gray-700.mb-3.font-bold(for="email") Email
               input#email(name="email" type="email", class=inputStyle, style="color: black; outline: none;", placeholder="user@domain.com")

@@ -1,6 +1,7 @@
 import { request, response } from "express";
 import User from "../models/User.js";
 import { check, validationResult } from "express-validator";
+import generateToken from "../lif/tokens.js";
 
 const formLogin = (req, res) => {
     res.render("auth/login.pug", { isLoged: false });
@@ -20,23 +21,49 @@ const formPasswordRecovery = (request, response) => {
 
 const insertUser = async (request, response) => {
     console.log(`===============[DATA]================\nIntentando registrar los datos del usuario en la Base de datos\nNombre: ${request.body.name}\nPassword: ${request.body.password}\n-------------------------------------`);
+    console.log(`Nombre: ${request.body.name}`);
 
-    await check("name").notEmpty().withMessage("This Field is required").run(request);
-    await check("email").notEmpty().withMessage("This Field is required").isEmail().withMessage("This is not in email format").run(request);
-    await check("password").notEmpty().withMessage("This Field is required").isLength({ min: 8 }).withMessage("The password must have 8 characters at least").run(request);
-    await check("confirmPassword").notEmpty().withMessage("This Field is required").isLength({ min: 8 }).withMessage("The password must have 8 characters at least").equals(request.body.password).withMessage("Both passwords field must be the same").run(request);
+    await check("name").notEmpty().withMessage("This field is required").run(request);
+    await check("email").notEmpty().withMessage("This field is required").isEmail().withMessage("This is not in email format").run(request);
+    await check("password").notEmpty().withMessage("This field is required").isLength({ min: 8 }).withMessage("This field requires at least 8 characters").run(request);
+    await check("confirm-password").notEmpty().withMessage("This field is required").isLength({ min: 8 }).withMessage("This field requires at least 8 characters").equals(request.body.password).withMessage("Both passwords must be the same").run(request);
 
-    console.log(`Se encontraron: ${validationResult.length} errores de validación`);
-    // response.json(validationResult(request));
+    const errors = validationResult(request);
 
-    let validation = validationResult(request);
+    console.log(`Se encontraron ${errors.errors.length} errores de validación`);
 
-    if (validation.isEmpty()) {
-        let newUser = await User.create(request.body);
+    const userExists = await User.findOne({ where: { email: request.body.email } });
+    console.log(userExists);
+
+    const { name, email, password } = request.body;
+
+    if (userExists) {
+        response.render("auth/register.pug", {
+            page: "New Account",
+            errors: [{ msg: `The user with email "${request.body.email}" already exists` }],
+            user: {
+                name: request.body.name,
+                email: request.body.email,
+            },
+        });
+        console.log(request.body.email);
+    } else if (errors.isEmpty()) {
+        const token = generateToken();
+        let newUser = await User.create({
+            name,
+            email,
+            password,
+            token,
+        });
+        response.json({ success: true, message: "User registered successfully" });
     } else {
         response.render("auth/register.pug", {
             page: "New Account",
-            errors: validation.array(),
+            errors: errors.array(),
+            user: {
+                name: request.body.name,
+                email: request.body.email,
+            },
         });
     }
 };
