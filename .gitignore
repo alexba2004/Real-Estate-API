@@ -1,6 +1,9 @@
 # Ignore node modules
 node_modules/
 
+#Ignore credentials
+.env
+
 # Logs
 logs
 *.log
