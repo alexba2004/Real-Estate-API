@@ -1,5 +1,5 @@
 {
-    "name": "mx.edu.utxj.ti.dsm.awos.real-estate-220103",
+    "name": "mx.edu.utxj.ti.dsm.awos.realestate-220103",
     "version": "1.0.0",
     "description": "Este proyecto será desarrollado con Node, Express, Sequelize, PUG, Tailwind, Leafleft, consistirá en realizar un sistema web que permita la publicación de propiedades para su compra venta.",
     "main": "index.js",
