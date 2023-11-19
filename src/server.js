@@ -9,6 +9,7 @@ import helmet from "helmet";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
+import chalk from "chalk";
 
 dotenv.config({
     path: "src/.env",
@@ -51,18 +52,33 @@ app.use(
     })
 );
 
-app.listen(process.env.SERVER_PORT, (request, response) => {
-    console.log(`EL servicio HTTP ha sido iniciado... \n  El servicio esta escuchando por el puerto: ${process.env.SERVER_PORT}`);
-});
+db.authenticate()
+    .then(() => {
+        console.log(chalk.green("============================================================="));
+        console.log(chalk.green("Conexión a la base de datos establecida con éxito"));
+        console.log(chalk.green("============================================================="));
 
-try {
-    await db.authenticate();
-    console.log("La conexion a la base de datos ha sido exitosa");
-    db.sync();
-    console.log("Se ha sincronizado las tablas existentes en la base de datos");
-} catch {
-    console.log("Ocurrio un error al intentar conectarse a la base de datos :c ");
-}
+        return db.sync();
+    })
+    .then(() => {
+        console.log(chalk.green("============================================================="));
+        console.log(chalk.green("Se han sincronizado las tablas existentes en la base de datos"));
+        console.log(chalk.green("============================================================="));
+    })
+    .catch((error) => {
+        console.error(chalk.red("============================================================="));
+        console.error(chalk.red("Error al conectar a la base de datos:", error));
+        console.error(chalk.red("============================================================="));
+    });
+
+// Iniciar el servicio HTTP
+app.listen(process.env.SERVER_PORT, () => {
+    console.log(chalk.green("=========================[DATA BASE]========================="));
+    console.log(chalk.green("El servicio HTTP ha sido iniciado"));
+    console.log(chalk.green("============================================================="));
+    console.log(chalk.green(`El servicio está escuchando en el puerto: ${process.env.SERVER_PORT}`));
+    console.log(chalk.green("============================================================="));
+});
 
 //app.use('/', generalRoutes); //!Mi reto
 app.use("/", userRoutes); //!Del usuario
