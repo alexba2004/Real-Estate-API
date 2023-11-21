@@ -1,10 +1,8 @@
 import express, { urlencoded } from "express";
-import generalRoutes from "./routes/generalRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import propertyRoutes from "./routes/propertyRoutes.js";
 import db from "./config/db.js";
-import User from "./models/user.js";
-import Property from "./models/property.js";
+import { User, Property } from "./models/relationships.js";
 import helmet from "helmet";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";

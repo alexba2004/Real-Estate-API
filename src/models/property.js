@@ -2,35 +2,55 @@ import { DataTypes } from "sequelize";
 import db from "../config/db.js";
 
 const Property = db.define("tbb_properties", {
+    id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+        primaryKey: true,
+    },
     title: {
-        // Titulo de la propiedad
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(150),
         allowNull: false,
     },
     description: {
-        // Descripcion
         type: DataTypes.TEXT,
         allowNull: false,
     },
     rooms: {
-        // Habitaciones
         type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    parkingLot: {
-        // Estacionamientos
-        type: DataTypes.INTEGER,
+        defaultValue: 0,
         allowNull: false,
     },
     wc: {
-        // Baños
         type: DataTypes.INTEGER,
+        defaultValue: 0,
         allowNull: false,
     },
-    userID: {
-        // ID del usuario
+    parkinglots: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        defaultValue: 0,
+        allowNull: false,
+    },
+    street: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+    },
+    lat: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    long: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    published: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
     },
 });
 
