@@ -10,7 +10,9 @@
         "server": "nodemon src/server.js",
         "js": "webpack --watch",
         "dev": "concurrently \"npm run css\" \"npm run js\"",
-        "css": "postcss src/public/css/tailwind.css -o src/public/css/app.css --watch"
+        "css": "postcss src/public/css/tailwind.css -o src/public/css/app.css --watch",
+        "db:importData": "node ./src/lib/seeders/startSeed.js -i",
+        "db:deleteData": "node ./src/lib/seeders/startSeed.js -d"
     },
     "repository": {
         "type": "git",

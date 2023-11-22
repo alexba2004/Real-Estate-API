@@ -20,17 +20,15 @@ block content
                         label.block.text-sm.uppercase.text-gray-600.mb-3.font-bold(for="category") Title of category
                         select#category.w-full.px-3.py-2.border.border-gray-300.rounded(name="category")
                             option(value="" selected) -- SELECT CATEGORY --
-                            option(value="apartment") Apartment
-                            option(value="house") House
-                            option(value="landfield") Landfield
-                            option(value="warehouse") Warehouse
+                            each category in categories
+                                option(value=category.id)=category.name
+
                     div(class="md:w-1/2")
                         label.block.text-sm.uppercase.text-gray-600.mb-3.font-bold(for="priceRange") Price range
                         select#priceRange.w-full.px-3.py-2.border.border-gray-300.rounded(name="priceRange")
                             option(value="" selected) -- SELECT PRICE --
-                            option(value="1") $100,000 - $150,000 
-                            option(value="2") $151,000 - $200,000 
-                            option(value="3") + $200,000
+                            each price in prices
+                                option(value=price.id)=price.name
 
                 div(class="md:flex md:gap-4") 
                     div(class="md:w-1/3")   
