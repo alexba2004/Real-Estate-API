@@ -32,8 +32,8 @@
                 marker.bindPopup(result.address.LongLabel);
                 document.querySelector(".street").textContent = result.address?.Address ?? "";
                 document.querySelector("#street").value = result.address?.Address ?? "";
-                document.querySelector("#lat").value = result.address?.latlng?.lat ?? "";
-                document.querySelector("#lng").value = result.address?.latlng?.lng ?? "";
+                document.querySelector("#lat").value = result.latlng?.lat ?? "";
+                document.querySelector("#lng").value = result.latlng?.lng ?? "";
             });
     });
 })();

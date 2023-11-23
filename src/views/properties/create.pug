@@ -60,9 +60,9 @@ block content
                 #map.h-96
                 div
                     p.street
-                input#street(type="hidden", name="street")
-                input#lat(type="hidden", name="lat")
-                input#lng(type="hidden", name="lng") 
+                input#street(type="hidden", name="street" value=data.street ? data.street: '')
+                input#lat(type="hidden", name="lat" value=data.lat ? data.lat: '')
+                input#lng(type="hidden", name="lng" value=data.lng ? data.lng: '') 
                 input#btn-save.w-full.text-white(class="text-gray-800 font-bold py-3 cursor-pointer bg-customYellow rounded-xl hover:bg-customYellow2 hover:text-white" type="submit" value="Save")
 block scripts
     script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
