@@ -1,0 +1,63 @@
+{
+    "name": "mx.edu.utxj.ti.dsm.awos.realestate220103",
+    "version": "1.0.0",
+    "description": "Node, Express, Sequelize, PUG, Tailwind, Leafleft.",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "start": "node src/index.js",
+        "start-permanente": "nodemon src/index.js",
+        "server": "nodemon src/server.js",
+        "js": "webpack --watch",
+        "dev": "concurrently \"npm run css\" \"npm run js\"",
+        "css": "postcss src/public/css/tailwind.css -o src/public/css/app.css --watch",
+        "db:importData": "node ./src/lib/seeders/startSeed.js -i",
+        "db:deleteData": "node ./src/lib/seeders/startSeed.js -d"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/alexba2004/Real-Estate-API.git"
+    },
+    "keywords": [
+        "AWOS",
+        "API",
+        "REST",
+        "MYSQL",
+        "BIENES",
+        "RAICES",
+        "TAILWIND"
+    ],
+    "author": "Jose Alejandro Briones Arroyo",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/alexba2004/Bienes-Raices/issues"
+    },
+    "homepage": "https://github.com/alexba2004/Bienes-Raices#readme",
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "body-parser": "^1.20.2",
+        "cookie-parser": "^ 1.4.6",
+        "dotenv": "^16.3.1",
+        "dropzone": "^5.9.3",
+        "express-validator": "^7.0.1",
+        "helmet": "^7.0.0",
+        "jsonwebtoken": "^9.0.2",
+        "multer": "^1.4.5-lts.1",
+        "mysql2": "^3.6.2",
+        "nodemailer": "^6.9.7",
+        "pug": "^3.0.2",
+        "sequelize": "^6.33.0",
+        "uuid": "^9.0.1"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.16",
+        "concurrently": "^8.2.2",
+        "express": "^4.18.2",
+        "nodemon": "^3.0.1",
+        "postcss": "^8.4.31",
+        "postcss-cli": "^10.1.0",
+        "tailwindcss": "^3.3.3",
+        "webpack": "^5.89.0",
+        "webpack-cli": "^5.1.4"
+    }
+}

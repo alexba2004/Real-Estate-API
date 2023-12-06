@@ -1,0 +1,25 @@
+extends ../layout/index
+block styles 
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css")
+block content
+    .py-10
+        if errors 
+            div#message.mt-8.mx-auto.max-w-xl(class="text-center time")
+                div.text-center(class="bg-red-500 text-white uppercase font-bold rounded-t px-4 mt-1 max-w-xl") danger
+                
+                div.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold(class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700  max-w-xl" )
+                    each error in errors 
+                        p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg
+
+        h2.text-center.text-2xl.font-extrabold= page
+        div
+            .bg-white.shadow.py-8.px-4.rounded.mx-auto.max-w-4xl.my-10(class="md:px-10") 
+                .space-y-8
+                    h3.text-lg.leading-6.font-md.tex-gray-900.font-bold Images of property
+                    p.text-gray-600 Please drag and drop validate image files or browse in your files to select the image.
+                form(id='image' name="image" class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center mt-5" method="POST" action=`/properties/addImage/${property.id}` enctype="multipart/form-data")
+                button#publish.w-full.bg-cyan-500.text-white(class="text-gray-800 font-bold py-3 mt-5 cursor-pointer bg-customYellow rounded-xl hover:bg-customYellow2 hover:text-white" type="button" ) Publish Property
+
+block scripts
+    script( src="/js/customDropzone.js") 
+    scriot(src="https//cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js")
